@@ -3,42 +3,46 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script
-	src="https://code.jquery.com/jquery-3.2.1.min.js"
-  	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  	crossorigin="anonymous"></script>
-	<script type="text/javascript" src="script.js"></script>
 	<title>Train Time</title>
 </head>
 <body>
 
 <div class="container">
+	
+	<!-- Header -->
 	<div class="header">
 		<h1>Train Time</h1>
-			<p>Choo Choo</p>
+			<h4>Choo Choo</h4>
 	</div>
 
 
-
-
-	<div class = "wrapper">
+	<!-- Train Schedule Section -->
+	<!-- <div class = "wrapper"> -->
 		<div class="train-schedule">
 			<h4>Current Train Schedule</h4>
-		</div>
-		<div class="row">
-		<!-- Train schdule titles -->
-			<div class="train-schedule-titles">
-				<div class="col-md-2">Train Name</div>
-				<div class="col-md-2">Destination</div>
-				<div class="col-md-2">Frequency (min)</div>
-				<div class="col-md-2">Next Arrival</div>
-				<div class="col-md-2">Minutes Away</div>
+			<div class="row">
+			<!-- Train schdule titles -->
+				<div class="train-schedule-titles">
+					<div class="col-md-2">Train Name</div>
+					<div class="col-md-2">Destination</div>
+					<div class="col-md-2">Frequency (min)</div>
+					<div class="col-md-2">Next Arrival</div>
+					<div class="col-md-2">Minutes Away</div>
+				</div>
+			</div>
+			<!-- New values added here. -->
+			<div class="row">
+				<div class="col-md-2 value train-field"></div>
+				<div class="col-md-2 value destination-field"></div>
+				<div class="col-md-2 value frequency-field"></div>
+				<div class="col-md-2 value next-field"></div>
+				<div class="col-md-2 value minutes-field"></div>
 			</div>
 		</div>
-	</div class="wrapper">
+<!-- 	</div class="wrapper"> -->
 
 
-
+	<!-- Add train form -->
 	<form>
 		<div class="add-train">
 			<h4>Add Train</h4>
@@ -59,11 +63,18 @@
     		<label for="formGroupFrequencyInput">Frequency: </label>
     		<input type="text" class="form-control" id="formGroupFrequencyInput" placeholder="Example: '45'">
   		</div>
+  		<input id="submit" type="submit" value="Submit">
 
 </form>
 
 </div>
 
+
+	<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+  	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  	crossorigin="anonymous"></script>
+	<script type="text/javascript" src="script.js"></script>
 
 </body>
 </html>

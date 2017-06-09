@@ -2,15 +2,24 @@
 	text-align: center;
 	margin-top: 100px;
 	margin-bottom: 50px;
-	background-color: lightgray;
+	background-color: #4B6AAB;
 	height: 200px;
 	padding-top: 50px;
+	border-radius: 5px;
+}
+
+h1 {
+	font-size: 50px;
 }
 
 .train-schedule {
-	background-color: lightgray;
+	
 	padding-top: 5px;
 	padding-bottom: 5px;
+	border-style: solid;
+	border-radius: 5px;
+	margin-bottom: 50px;
+
 }
 
 .train-schedule-titles {
@@ -21,17 +30,20 @@
 }
 
 .wrapper {
-	border-style: solid;
-	border-radius: 5px;
-	margin-bottom: 50px;
+	
 }
 
 .add-train {
-	background-color: lightgray;
+	background-color: #4B6AAB;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 5px;
 
+}
+
+.value {
+	display: inline-block;
+	float: left;
 }
 
 form {
@@ -41,4 +53,9 @@ form {
 
 .form-group {
 	padding: 5px;
+}
+
+#submit {
+	margin: 5px;
+
 }
