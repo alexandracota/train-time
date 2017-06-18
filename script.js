@@ -1,15 +1,12 @@
 
+ 
+
 //Initial count variables.
 var nameCount = 0;
 var destinationCount = 0;
 var firstTrainCount = 0;
 var frequencyCount = 0;
 
-//These are the arrays to store the data.
-var nameArray = [];
-var destinationArray = [];
-var firstTrainArray = [];
-var frequencyArray = [];
 
 nameArray = JSON.parse(localStorage.getItem("nameList"));
 localStorage.setItem("nameList", JSON.stringify(nameArray)
@@ -26,46 +23,85 @@ $("#submit").on("click", function(event){
 	var submitFirstTrain = $("#formGroupFirstTrainInput").val();
 	var submitFrequency = $("#formGroupFrequencyInput").val();
 
+
+	//Get the value from firstTrain and frequency and calculate how many trains have passed.
+	firstTrainConverted = moment(submitFirstTrain, "hh:mm").subtract(1, "years");
+	currentTime = moment();
+	timeDifference = moment().diff(moment(firstTrainConverted), "minutes");
+	trainRemainder = timeDifference % submitFrequency;
+	minutesUntilNext = submitFrequency - trainRemainder;
+	nextTrain = moment().add(minutesUntilNext, "minutes");
+	nextTrainFormat = moment(nextTrain).format("hh:mm");
+
+	// console.log(firstTrainConverted);
+	// console.log(currentTime);
+	// console.log(timeDifference);
+	// console.log(trainRemainder);
+	// console.log(minutesUntilNext);
+	// console.log(nextTrain);
+	// console.log(nextTrainFormat);
+
+
+	//Stringify numerical values.
 	JSON.stringify(submitFirstTrain);
 	JSON.stringify(submitFrequency);
 
+	// console.log(submitName);
+	// console.log(submitDestination);
+	// console.log(submitFirstTrain);
+	// console.log(submitFrequency);
 
-	console.log(submitName);
-	console.log(submitDestination);
-	console.log(submitFirstTrain);
-	console.log(submitFrequency);
+
+	//Object to hold all values being pushed to server.
+	var pushValues = {
+		"submitName": submitName,
+		"submitDestination": submitDestination,
+		"submitFrequency": submitFrequency,
+		"nextTrainFormat": nextTrainFormat,
+		"minutesUntilNext": minutesUntilNext
+	};
+
+	//Set the values in the server.
+	database.ref().push({
+		"name": pushValues.submitName,
+		"dest":  pushValues.submitDestination,
+		"freq": pushValues.submitFrequency,
+		"next": pushValues.submit
+			});
+
+	//console.log(pushValues);
+
+
+
+
+database.ref().on("child_added", function(snapshot) {
+	var name = snapshot.val().name;
+	var destination = snapshot.val().dest;
+	console.log(name);
+});
+
+
 
 	//Create p tags for each value.
 	var nameDiv = $("<p>");
 	var destinationDiv = $("<p>");
-	var firstTrainDiv = $("<p>");
 	var frequencyDiv = $("<p>");
 
-		//Give each variable above an ID that reflects it's respective counter.
-		nameDiv.attr("id", "name-" + nameCount);
-		destinationDiv.attr("id", "name-" + destinationCount);
-		firstTrainDiv.attr("id", "name-" + firstTrainCount);
-		frequencyDiv.attr("id", "name-" + frequencyCount);
+	//Give each variable above an ID that reflects it's respective counter.
+	nameDiv.attr("id", "name-" + nameCount);
+	destinationDiv.attr("id", "name-" + destinationCount);
+	frequencyDiv.attr("id", "name-" + frequencyCount);
 
 	
-
 	//Append the values to each <p> element.
 	nameDiv.append(" " + submitName);
 	destinationDiv.append(" " + submitDestination);
-	firstTrainDiv.append(" " + submitFirstTrain);
 	frequencyDiv.append(" " + submitFrequency);
 
-
+	//Append fields to document.
 	$(".train-field").append(nameDiv);
 	$(".destination-field").append(destinationDiv);
-
-	console.log(nameDiv);
-	console.log(destinationDiv);
-	console.log(firstTrainDiv);
-	console.log(frequencyDiv);
-
-	//Append values to the document.
-	//$("#added-fields").append(nameDiv, destinationDiv, firstTrainDiv, frequencyDiv);
+	$(".frequency-field").append(frequencyDiv);
 
 	//Clear the textbox when done.
 	$("#formGroupNameInput").val("");
@@ -79,9 +115,15 @@ $("#submit").on("click", function(event){
 	firstTrainCount++;
 	frequencyCount++;
 
-	console.log(nameCount);
-	console.log(destinationCount);
-	console.log(firstTrainCount);
-	console.log(frequencyCount);
-
 });
+
+
+
+
+
+
+
+
+
+
+

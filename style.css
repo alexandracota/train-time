@@ -13,24 +13,25 @@ h1 {
 }
 
 .train-schedule {
-	
-	padding-top: 5px;
-	padding-bottom: 5px;
 	border-style: solid;
 	border-radius: 5px;
 	margin-bottom: 50px;
 
 }
 
+.current-train-schedule {
+	background-color: #4B6AAB;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+
 .train-schedule-titles {
+
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-weight: bold;
 	text-align: center;
-}
-
-.wrapper {
-	
 }
 
 .add-train {
